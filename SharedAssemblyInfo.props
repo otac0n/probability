@@ -1,0 +1,8 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Eric Lippert</Authors>
+    <Copyright>Copyright © 2020 $(Authors)</Copyright>
+    <Product>Probability</Product>
+    <NeutralLanguage>en-US</NeutralLanguage>
+  </PropertyGroup>
+</Project>

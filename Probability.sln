@@ -1,0 +1,46 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7A20A861-B655-4C27-B350-DA95F79140A2}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		appveyor.yml = appveyor.yml
+		CodeMaid.config = CodeMaid.config
+		GitVersion.yaml = GitVersion.yaml
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+		SharedAssemblyInfo.props = SharedAssemblyInfo.props
+		Strict.ruleset = Strict.ruleset
+		stylecop.json = stylecop.json
+		Tests.ruleset = Tests.ruleset
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Probability", "Probability\Probability.csproj", "{5A4CB8E5-56DF-4947-8E59-62AE198F2702}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Probability.Tests", "Probability.Tests\Probability.Tests.csproj", "{E9CCCC80-3A8D-42BF-BCE3-43FDE6579D34}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A4CB8E5-56DF-4947-8E59-62AE198F2702}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A4CB8E5-56DF-4947-8E59-62AE198F2702}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A4CB8E5-56DF-4947-8E59-62AE198F2702}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A4CB8E5-56DF-4947-8E59-62AE198F2702}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9CCCC80-3A8D-42BF-BCE3-43FDE6579D34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9CCCC80-3A8D-42BF-BCE3-43FDE6579D34}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9CCCC80-3A8D-42BF-BCE3-43FDE6579D34}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9CCCC80-3A8D-42BF-BCE3-43FDE6579D34}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {737AC086-543A-43A9-A691-E235CED5068E}
+	EndGlobalSection
+EndGlobal

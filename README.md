@@ -1,4 +1,7 @@
-# probability
+Probability
+=======
+
+[![MIT Licensed](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](LICENSE.md)
 
 This repository contains some explorations on how stochastic programming could be improved in C#; this is the source code associated with a series of blog posts which can be found here:
 
