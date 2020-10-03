@@ -10,6 +10,26 @@ namespace Probability
     /// </summary>
     internal static class Extensions
     {
+        public static string DiscreteHistogram<T>(this IEnumerable<T> d)
+        {
+            const int sampleCount = 100000;
+            const int width = 40;
+            var dict = d.Take(sampleCount)
+                .GroupBy(x => x)
+                .ToDictionary(g => g.Key, g => g.Count());
+            var labelMax = dict.Keys
+                .Select(x => x.ToString().Length)
+                .Max();
+            var sup = dict.Keys.OrderBy(ToLabel).ToList();
+            var max = dict.Values.Max();
+            var scale = max < width ? 1.0 : (double)width / max;
+            return sup.Select(s => $"{ToLabel(s)}|{Bar(s)}").NewlineSeparated();
+            string ToLabel(T t) =>
+                t.ToString().PadLeft(labelMax);
+            string Bar(T t) =>
+                new string('*', (int)(dict[t] * scale));
+        }
+
         public static string Histogram(this IEnumerable<double> values, double low, double high)
         {
             const int width = 40;
@@ -34,33 +54,10 @@ namespace Probability
                     + new string('-', width) + "\n";
         }
 
-        public static string DiscreteHistogram<T>(this IEnumerable<T> d)
-        {
-            const int sampleCount = 100000;
-            const int width = 40;
-            var dict = d.Take(sampleCount)
-                .GroupBy(x => x)
-                .ToDictionary(g => g.Key, g => g.Count());
-            int labelMax = dict.Keys
-                .Select(x => x.ToString().Length)
-                .Max();
-            var sup = dict.Keys.OrderBy(ToLabel).ToList();
-            int max = dict.Values.Max();
-            double scale = max < width ? 1.0 : ((double)width) / max;
-            return sup.Select(s => $"{ToLabel(s)}|{Bar(s)}").NewlineSeparated();
-            string ToLabel(T t) =>
-                t.ToString().PadLeft(labelMax);
-            string Bar(T t) =>
-                new string('*', (int)(dict[t] * scale));
-        }
+        internal static string Concatenated<T>(this IEnumerable<T> items) => string.Join(string.Empty, items);
 
-        public static string Separated<T>(this IEnumerable<T> items, string s) =>
-            string.Join(s, items);
+        internal static string NewlineSeparated<T>(this IEnumerable<T> items) => items.Separated("\n");
 
-        public static string Concatenated<T>(this IEnumerable<T> items) =>
-            string.Join("", items);
-
-        public static string NewlineSeparated<T>(this IEnumerable<T> items) =>
-            items.Separated("\n");
+        internal static string Separated<T>(this IEnumerable<T> items, string s) => string.Join(s, items);
     }
 }

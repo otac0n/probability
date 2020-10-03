@@ -12,6 +12,8 @@ namespace Probability
     {
         public static string Histogram(this IDistribution<double> values, double low, double high) => values.Samples().Histogram(low, high);
 
+        public static string Histogram<T>(this IDiscreteDistribution<T> d) => d.Samples().DiscreteHistogram();
+
         public static IEnumerable<T> Samples<T>(this IDistribution<T> distribution)
         {
             while (true)
@@ -20,16 +22,13 @@ namespace Probability
             }
         }
 
-        public static string Histogram<T>(this IDiscreteDistribution<T> d) =>
-            d.Samples().DiscreteHistogram();
-
-        public static string ShowWeights<T>(this IDiscreteDistribution<T> d)
+        public static string ShowWeights<T>(this IDiscreteDistribution<T> distribution)
         {
-            int labelMax = d.Support()
+            var labelMax = distribution.Support()
                 .Select(x => x.ToString().Length)
                 .Max();
-            return d.Support()
-                .Select(s => $"{ToLabel(s)}:{d.Weight(s)}")
+            return distribution.Support()
+                .Select(s => $"{ToLabel(s)}:{distribution.Weight(s)}")
                 .NewlineSeparated();
             string ToLabel(T t) =>
                 t.ToString().PadLeft(labelMax);
