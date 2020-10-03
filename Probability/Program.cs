@@ -1,13 +1,12 @@
-﻿using System;
+using System;
 
 namespace Probability
 {
-    class Program
+    internal class Program
     {
-        static void Main()
+        private static void Main()
         {
             Console.WriteLine("Probability");
-            RandomIsAwful.DoIt();
             Console.WriteLine("Press Enter to finish");
             Console.ReadLine();
         }
