@@ -1,22 +1,23 @@
-﻿using System;
-using System.Threading;
-using CRNG = System.Security.Cryptography.RandomNumberGenerator;
+// Copyright © Eric Lippert and Contributors. All Rights Reserved. This source is subject to the MIT license. Please see license.md for more information.
 
 namespace Probability
 {
-    // A crypto-strength, threadsafe, all-static RNG.
-    // Still not a great API. We can do better.
+    using System;
+    using System.Security.Cryptography;
+    using System.Threading;
+
+    /// <summary>
+    /// A crypto-strength, threadsafe, all-static RNG.
+    /// </summary>
+    /// <remarks>
+    /// Still not a great API. We can do better.
+    /// </remarks>
     public static class BetterRandom
     {
-        private static readonly ThreadLocal<CRNG> crng =
-          new ThreadLocal<CRNG>(CRNG.Create);
-        private static readonly ThreadLocal<byte[]> bytes =
-          new ThreadLocal<byte[]>(() => new byte[sizeof(int)]);
-        public static int NextInt()
-        {
-            crng.Value.GetBytes(bytes.Value);
-            return BitConverter.ToInt32(bytes.Value, 0) & int.MaxValue;
-        }
+        private static readonly ThreadLocal<byte[]> Bytes = new ThreadLocal<byte[]>(() => new byte[sizeof(int)]);
+
+        private static readonly ThreadLocal<RandomNumberGenerator> Rng = new ThreadLocal<RandomNumberGenerator>(RandomNumberGenerator.Create);
+
         public static double NextDouble()
         {
             while (true)
@@ -26,10 +27,18 @@ namespace Probability
                 x |= (long)NextInt();
                 double n = x;
                 const double d = 1L << 52;
-                double q = n / d;
+                var q = n / d;
                 if (q != 1.0)
+                {
                     return q;
+                }
             }
+        }
+
+        public static int NextInt()
+        {
+            Rng.Value.GetBytes(Bytes.Value);
+            return BitConverter.ToInt32(Bytes.Value, 0) & int.MaxValue;
         }
     }
 }

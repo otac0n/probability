@@ -1,7 +1,9 @@
-using System;
+// Copyright © Eric Lippert and Contributors. All Rights Reserved. This source is subject to the MIT license. Please see license.md for more information.
 
 namespace Probability
 {
+    using System;
+
     internal class Program
     {
         private static void Main()

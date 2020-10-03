@@ -1,9 +1,12 @@
-﻿using System;
-using System.Linq;
+// Copyright © Eric Lippert and Contributors. All Rights Reserved. This source is subject to the MIT license. Please see license.md for more information.
+
 namespace Probability
 {
+    using System;
+    using System.Linq;
     using SCU = StandardContinuousUniform;
-    static class Episode03
+
+    internal static class Episode03
     {
         public static void DoIt()
         {
