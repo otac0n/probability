@@ -9,7 +9,7 @@ namespace Probability
         private static void Main()
         {
             Console.WriteLine("Probability");
-            Episode03.DoIt();
+            Episode05.DoIt();
             Console.WriteLine("Press Enter to finish");
             Console.ReadLine();
         }

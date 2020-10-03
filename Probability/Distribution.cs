@@ -3,6 +3,7 @@
 namespace Probability
 {
     using System.Collections.Generic;
+    using System.Linq;
 
     /// <summary>
     /// Extension methods on distributions.
@@ -17,6 +18,21 @@ namespace Probability
             {
                 yield return distribution.Sample();
             }
+        }
+
+        public static string Histogram<T>(this IDiscreteDistribution<T> d) =>
+            d.Samples().DiscreteHistogram();
+
+        public static string ShowWeights<T>(this IDiscreteDistribution<T> d)
+        {
+            int labelMax = d.Support()
+                .Select(x => x.ToString().Length)
+                .Max();
+            return d.Support()
+                .Select(s => $"{ToLabel(s)}:{d.Weight(s)}")
+                .NewlineSeparated();
+            string ToLabel(T t) =>
+                t.ToString().PadLeft(labelMax);
         }
     }
 }
